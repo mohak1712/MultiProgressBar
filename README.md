@@ -29,7 +29,7 @@ In XML--
         custom:mReachedBarColor="#d3d"
         android:id="@+id/mutli"
         mohak:mColorLeft="#ffffff"
-        mohak:mColorRight="#42a79c"
+        mohak:mColorRight="#ffffff"
         android:layout_margin="10dp"
         custom:maxprogress="200"
         custom:textsize="10sp"
