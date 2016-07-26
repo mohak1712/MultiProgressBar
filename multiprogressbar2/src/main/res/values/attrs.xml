@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="MultiProg">
+
+        <attr name="progress" format="integer" />
+        <attr name="maxprogress" format="integer" />
+        <attr name="mReachedBarColor" format="color" />
+        <attr name="mUnReachedBarColor" format="color" />
+        <attr name="mTextColor" format="color" />
+        <attr name="mTextColor2" format="color" />
+        <attr name="barHeight" format="dimension" />
+        <attr name="textsize" format="dimension" />
+    </declare-styleable>
+
+</resources>
