@@ -10,7 +10,6 @@ import android.util.AttributeSet;
 import android.view.View;
 
 
-
 /**
  * Created by mohak on 22/7/16.
  */
@@ -48,19 +47,31 @@ public class MultiProg extends View {
     private int mDescColor;
 
     /**
-     * The circleLeft color.
+     * The circleLeft text color.
      */
     private int mTextColor;
 
     /**
-     * The circleRight color.
+     * The circleRight text color.
      */
     private int mTextColor2;
 
 
     /**
+     * The circleLeft  color.
+     */
+    private int mColorLeft;
+
+    /**
+     * The circleRight  color.
+     */
+    private int mColorRight;
+
+
+    /**
      * The text size.
      */
+
     private int mTextSize;
 
 
@@ -74,7 +85,7 @@ public class MultiProg extends View {
      * Paint to be used.
      */
 
-    Paint mReached, mUnReached, mDescPaint, mTextPaint, mCirclePaint, mTextPaint2;
+    Paint mReached, mUnReached, mTextPaint, mTextPaint2, mCircleLeft, mCircleRight;
 
     public MultiProg(Context context) {
         super(context);
@@ -96,6 +107,8 @@ public class MultiProg extends View {
             mMaxProgress = a.getInt(R.styleable.MultiProg_maxprogress, 100);
             mTextColor = a.getColor(R.styleable.MultiProg_mTextColor, Color.GREEN);
             mTextColor2 = a.getColor(R.styleable.MultiProg_mTextColor2, Color.RED);
+            mColorLeft = a.getColor(R.styleable.MultiProg_mColorLeft, Color.WHITE);
+            mColorRight = a.getColor(R.styleable.MultiProg_mColorRight, Color.WHITE);
             setmMaxProgress(mMaxProgress);
             setmCurrentProgress(mCurrentProgress);
             setmReachedBarColor(mReachedBarColor);
@@ -103,6 +116,8 @@ public class MultiProg extends View {
             setmDescColor(mDescColor);
             setmTextColor(mTextColor);
             setmTextColor2(mTextColor2);
+            setmColorLeft(mColorLeft);
+            setmColorRight(mColorRight);
 
         } finally {
 
@@ -113,7 +128,18 @@ public class MultiProg extends View {
         mUnReachedPaint();
         mTextPaint();
         mTextPaint2();
-        mCirclePaint();
+        mCircleLeft();
+        mCircleRight();
+
+    }
+
+    private void mCircleRight() {
+
+        mCircleRight = new Paint();
+        mCircleRight.setColor(mColorRight);
+        mCircleRight.setStyle(Paint.Style.FILL);
+        mCircleRight.setFlags(Paint.ANTI_ALIAS_FLAG);
+        setmCircleRight(mCircleRight);
 
     }
 
@@ -128,13 +154,13 @@ public class MultiProg extends View {
         setmTextPaint2(mTextPaint2);
     }
 
-    private void mCirclePaint() {
+    private void mCircleLeft() {
 
-        mCirclePaint = new Paint();
-        mCirclePaint.setColor(Color.WHITE);
-        mCirclePaint.setStyle(Paint.Style.FILL);
-        setmCirclePaint(mCirclePaint);
-
+        mCircleLeft = new Paint();
+        mCircleLeft.setColor(mColorLeft);
+        mCircleLeft.setStyle(Paint.Style.FILL);
+        mCircleLeft.setFlags(Paint.ANTI_ALIAS_FLAG);
+        setmCircleLeft(mCircleLeft);
     }
 
 
@@ -194,6 +220,20 @@ public class MultiProg extends View {
     }
 
 
+    public void setmColorLeft(int mColorLeft) {
+        this.mColorLeft = mColorLeft;
+        invalidate();
+    }
+
+    public void setmColorRight(int mColorRight) {
+        this.mColorRight = mColorRight;
+        invalidate();
+    }
+
+    public void setmCircleRight(Paint mCircleRight) {
+        this.mCircleRight = mCircleRight;
+    }
+
     public void setmTextbarprog(String mTextbarprog) {
         this.mTextbarprog = mTextbarprog;
         invalidate();
@@ -219,23 +259,12 @@ public class MultiProg extends View {
         invalidate();
     }
 
-
-//    public void setmBarHeight(int mBarHeight) {
-//        this.mBarHeight = mBarHeight;
-//        invalidate();
-//    }
-
-
     public void setmUnreachedBarColor(int mUnreachedBarColor) {
 
         this.mUnreachedBarColor = mUnreachedBarColor;
         invalidate();
     }
 
-//    public void setmTextSize(int mTextSize) {
-//        this.mTextSize = mTextSize;
-//        invalidate();
-//    }
 
     public void setmReached(Paint mReached) {
         this.mReached = mReached;
@@ -253,15 +282,12 @@ public class MultiProg extends View {
         invalidate();
     }
 
-    public void setmCirclePaint(Paint mCirclePaint) {
-        this.mCirclePaint = mCirclePaint;
+    public void setmCircleLeft(Paint mCircleLeft) {
+        this.mCircleLeft = mCircleLeft;
         invalidate();
     }
 
-    public void setmDescPaint(Paint mDescPaint) {
-        this.mDescPaint = mDescPaint;
-        invalidate();
-    }
+
 
     public void setmTextPaint(Paint mTextPaint) {
         this.mTextPaint = mTextPaint;
@@ -310,9 +336,9 @@ public class MultiProg extends View {
         canvas.drawRect(new RectF(0, +getHeight() / 2,
                 ((getWidth()) * mCurrentProgress) / mMaxProgress, getHeight() / 2), mReached);
 
-        canvas.drawCircle(mTextPaint.measureText(mTextbarprog), getHeight() / 2, mTextPaint.measureText(mTextbarprog), mCirclePaint);
+        canvas.drawCircle(mTextPaint.measureText(mTextbarprog), getHeight() / 2, mTextPaint.measureText(mTextbarprog), mCircleLeft);
         canvas.drawText(mTextbarprog, mTextPaint.measureText(mTextbarprog) / 2, getHeight() / 2 + mTextPaint.getTextSize() / 2, mTextPaint);
-        canvas.drawCircle(getWidth() - mTextPaint2.measureText(mTextbarprog2), getHeight() / 2, mTextPaint2.measureText(mTextbarprog2), mCirclePaint);
+        canvas.drawCircle(getWidth() - mTextPaint2.measureText(mTextbarprog2), getHeight() / 2, mTextPaint2.measureText(mTextbarprog2), mCircleRight);
         canvas.drawText(mTextbarprog2, (float) (getWidth() - 1.5 * mTextPaint2.measureText(mTextbarprog2)), getHeight() / 2 + mTextPaint2.getTextSize() / 2, mTextPaint2);
     }
 

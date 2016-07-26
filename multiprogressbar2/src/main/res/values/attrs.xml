@@ -9,6 +9,8 @@
         <attr name="mUnReachedBarColor" format="color" />
         <attr name="mTextColor" format="color" />
         <attr name="mTextColor2" format="color" />
+        <attr name="mColorLeft" format="color" />
+        <attr name="mColorRight" format="color" />
         <attr name="barHeight" format="dimension" />
         <attr name="textsize" format="dimension" />
     </declare-styleable>

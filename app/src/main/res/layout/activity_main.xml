@@ -15,6 +15,8 @@
         mohak:barHeight="1dp"
         mohak:maxprogress="200"
         mohak:progress="0"
+        mohak:mColorLeft="#d3d3d3"
+        mohak:mColorRight="#42a79c"
         mohak:textsize="10sp" />
 
 </LinearLayout>
