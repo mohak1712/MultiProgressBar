@@ -28,6 +28,8 @@ In XML--
         custom:barHeight="2dp"
         custom:mReachedBarColor="#d3d"
         android:id="@+id/mutli"
+        mohak:mColorLeft="#ffffff"
+        mohak:mColorRight="#42a79c"
         android:layout_margin="10dp"
         custom:maxprogress="200"
         custom:textsize="10sp"
