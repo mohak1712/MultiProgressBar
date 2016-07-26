@@ -1,20 +1,27 @@
 # MultiProgressBar
 A beautiful,  Android Multi ProgressBar.
 
-GRADLE (APP) :
-dependencies {
-    compile 'com.github.mohak1712:MultiProgressBar:1.0'
-}
+## How to use
+Inside your GRADLE (APP) add :
 
+```
+dependencies{
+compile 'com.github.mohak1712:MultiProgressBar:1.0'
+}
+```
+```
 allprojects {
     repositories {
         maven { url "https://jitpack.io" }
     }
 }
 
-In XML--
-    xmlns:custom="http://schemas.android.com/apk/res-auto" -  parent layout
+```
 
+In XML--
+```
+    xmlns:custom="http://schemas.android.com/apk/res-auto" -  parent layout
+    
  <com.mohak.mutliprogressbar.MultiProg
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -25,9 +32,12 @@ In XML--
         custom:maxprogress="200"
         custom:textsize="10sp"
         custom:progress="100" />
-        
+```
 In JAVA--
+
+```       
         multiProg = (MultiProg) findViewById(R.id.mutli);
         multiProg.setmCurrentProgress(15);
+        
         
         
