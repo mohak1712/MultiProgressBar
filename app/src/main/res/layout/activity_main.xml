@@ -3,7 +3,8 @@
     xmlns:mohak="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
     android:orientation="vertical"
     tools:context="com.mohak.multiprogressbar.MainActivity">
 
@@ -13,10 +14,11 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         mohak:barHeight="1dp"
-        mohak:maxprogress="200"
-        mohak:progress="0"
-        mohak:mColorLeft="#d3d3d3"
-        mohak:mColorRight="#42a79c"
+        mohak:mTextColor="#262626"
+        mohak:mTextColor2="#ffffff"
+        mohak:mColorLeft="#d3d2d2"
+        mohak:mColorRight="#d3d"
+        mohak:maxprogress="100"
         mohak:textsize="10sp" />
 
 </LinearLayout>

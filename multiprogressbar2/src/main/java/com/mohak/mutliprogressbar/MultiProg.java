@@ -5,9 +5,11 @@ import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.PorterDuff;
 import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.view.View;
+import android.view.ViewGroup;
 
 
 /**
@@ -86,6 +88,11 @@ public class MultiProg extends View {
      */
 
     Paint mReached, mUnReached, mTextPaint, mTextPaint2, mCircleLeft, mCircleRight;
+
+    /**
+     * Movement of circle
+     */
+    int mov, dir = 0;
 
     public MultiProg(Context context) {
         super(context);
@@ -288,7 +295,6 @@ public class MultiProg extends View {
     }
 
 
-
     public void setmTextPaint(Paint mTextPaint) {
         this.mTextPaint = mTextPaint;
         invalidate();
@@ -340,6 +346,26 @@ public class MultiProg extends View {
         canvas.drawText(mTextbarprog, mTextPaint.measureText(mTextbarprog) / 2, getHeight() / 2 + mTextPaint.getTextSize() / 2, mTextPaint);
         canvas.drawCircle(getWidth() - mTextPaint2.measureText(mTextbarprog2), getHeight() / 2, mTextPaint2.measureText(mTextbarprog2), mCircleRight);
         canvas.drawText(mTextbarprog2, (float) (getWidth() - 1.5 * mTextPaint2.measureText(mTextbarprog2)), getHeight() / 2 + mTextPaint2.getTextSize() / 2, mTextPaint2);
+        if (mCurrentProgress == mMaxProgress) {
+
+            canvas.drawColor(Color.WHITE);
+            canvas.drawRect(new RectF(0, +getHeight() / 2,
+                    ((getWidth()) * mCurrentProgress) / mMaxProgress, getHeight() / 2), mReached);
+            mov = (int) (mTextPaint.measureText(mTextbarprog)) / 4;
+            dir += mov;
+            canvas.drawCircle(mTextPaint.measureText(mTextbarprog) + dir, getHeight() / 2, mTextPaint.measureText(mTextbarprog), mCircleLeft);
+            canvas.drawText(mTextbarprog, mTextPaint.measureText(mTextbarprog) / 2 + dir, getHeight() / 2 + mTextPaint.getTextSize() / 2, mTextPaint);
+            if (getWidth() - dir - mov > 2 * mTextPaint.measureText(mTextbarprog))
+                invalidate();
+            else {
+                canvas.drawColor(Color.WHITE);
+                canvas.drawRect(new RectF(0, +getHeight() / 2,
+                        ((getWidth()) * mCurrentProgress) / mMaxProgress, getHeight() / 2), mReached);
+                canvas.drawCircle(getWidth() - mTextPaint.measureText(mTextbarprog), getHeight() / 2, mTextPaint.measureText(mTextbarprog), mCircleLeft);
+                canvas.drawText(mTextbarprog, (float) (getWidth() - 1.5 * mTextPaint.measureText(mTextbarprog)), getHeight() / 2 + mTextPaint.getTextSize() / 2, mTextPaint);
+            }
+
+        }
     }
 
 
