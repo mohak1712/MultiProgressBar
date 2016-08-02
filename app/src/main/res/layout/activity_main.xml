@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffffff"
     android:orientation="vertical"
+    android:background="#262626"
     tools:context="com.mohak.multiprogressbar.MainActivity">
 
     <com.mohak.mutliprogressbar.MultiProg
@@ -14,11 +14,12 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         mohak:barHeight="1dp"
+        mohak:mBgcolor="#262626"
         mohak:mTextColor="#262626"
         mohak:mTextColor2="#ffffff"
         mohak:mColorLeft="#d3d2d2"
         mohak:mColorRight="#d3d"
         mohak:maxprogress="100"
-        mohak:textsize="10sp" />
+        mohak:textsize="9sp" />
 
 </LinearLayout>

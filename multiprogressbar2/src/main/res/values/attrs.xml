@@ -13,6 +13,7 @@
         <attr name="mColorRight" format="color" />
         <attr name="barHeight" format="dimension" />
         <attr name="textsize" format="dimension" />
+        <attr name="mBgcolor" format="color"/>
     </declare-styleable>
 
 </resources>

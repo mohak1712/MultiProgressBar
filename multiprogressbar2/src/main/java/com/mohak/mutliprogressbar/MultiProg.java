@@ -69,6 +69,11 @@ public class MultiProg extends View {
      */
     private int mColorRight;
 
+    /**
+     * The background  color.
+     */
+    private int mBackgroundColor;
+
 
     /**
      * The text size.
@@ -116,6 +121,7 @@ public class MultiProg extends View {
             mTextColor2 = a.getColor(R.styleable.MultiProg_mTextColor2, Color.RED);
             mColorLeft = a.getColor(R.styleable.MultiProg_mColorLeft, Color.WHITE);
             mColorRight = a.getColor(R.styleable.MultiProg_mColorRight, Color.WHITE);
+            mBackgroundColor = a.getColor(R.styleable.MultiProg_mBgcolor, Color.WHITE);
             setmMaxProgress(mMaxProgress);
             setmCurrentProgress(mCurrentProgress);
             setmReachedBarColor(mReachedBarColor);
@@ -336,21 +342,25 @@ public class MultiProg extends View {
 
     private void setUpCanvas(Canvas canvas) {
 
-        canvas.drawRect(new RectF(0, getHeight() / 2,
-                getWidth(), getHeight() / 2), mUnReached);
+        if (mCurrentProgress < mMaxProgress) {
 
-        canvas.drawRect(new RectF(0, +getHeight() / 2,
-                ((getWidth()) * mCurrentProgress) / mMaxProgress, getHeight() / 2), mReached);
+            canvas.drawRect(new RectF(0, getHeight() / 2,
+                    getWidth(), getHeight() / 2), mUnReached);
 
-        canvas.drawCircle(mTextPaint.measureText(mTextbarprog), getHeight() / 2, mTextPaint.measureText(mTextbarprog), mCircleLeft);
-        canvas.drawText(mTextbarprog, mTextPaint.measureText(mTextbarprog) / 2, getHeight() / 2 + mTextPaint.getTextSize() / 2, mTextPaint);
-        canvas.drawCircle(getWidth() - mTextPaint2.measureText(mTextbarprog2), getHeight() / 2, mTextPaint2.measureText(mTextbarprog2), mCircleRight);
-        canvas.drawText(mTextbarprog2, (float) (getWidth() - 1.5 * mTextPaint2.measureText(mTextbarprog2)), getHeight() / 2 + mTextPaint2.getTextSize() / 2, mTextPaint2);
+            canvas.drawRect(new RectF(0, getHeight() / 2,
+                    ((getWidth()) * mCurrentProgress) / mMaxProgress, getHeight() / 2), mReached);
+
+            canvas.drawCircle(mTextPaint.measureText(mTextbarprog), getHeight() / 2, mTextPaint.measureText(mTextbarprog), mCircleLeft);
+            canvas.drawText(mTextbarprog, mTextPaint.measureText(mTextbarprog) / 2, getHeight() / 2 + mTextPaint.getTextSize() / 2, mTextPaint);
+            canvas.drawCircle(getWidth() - mTextPaint2.measureText(mTextbarprog2), getHeight() / 2, mTextPaint2.measureText(mTextbarprog2), mCircleRight);
+            canvas.drawText(mTextbarprog2, (float) (getWidth() - 1.5 * mTextPaint2.measureText(mTextbarprog2)), getHeight() / 2 + mTextPaint2.getTextSize() / 2, mTextPaint2);
+
+        }
         if (mCurrentProgress == mMaxProgress) {
 
-            canvas.drawColor(Color.WHITE);
-            canvas.drawRect(new RectF(0, +getHeight() / 2,
-                    ((getWidth()) * mCurrentProgress) / mMaxProgress, getHeight() / 2), mReached);
+            canvas.drawColor(mBackgroundColor);
+            canvas.drawRect(new RectF(0, getHeight() / 2,
+                    getWidth(), getHeight() / 2), mReached);
             mov = (int) (mTextPaint.measureText(mTextbarprog)) / 4;
             dir += mov;
             canvas.drawCircle(mTextPaint.measureText(mTextbarprog) + dir, getHeight() / 2, mTextPaint.measureText(mTextbarprog), mCircleLeft);
@@ -358,9 +368,9 @@ public class MultiProg extends View {
             if (getWidth() - dir - mov > 2 * mTextPaint.measureText(mTextbarprog))
                 invalidate();
             else {
-                canvas.drawColor(Color.WHITE);
+                canvas.drawColor(mBackgroundColor);
                 canvas.drawRect(new RectF(0, +getHeight() / 2,
-                        ((getWidth()) * mCurrentProgress) / mMaxProgress, getHeight() / 2), mReached);
+                        getWidth(), getHeight() / 2), mReached);
                 canvas.drawCircle(getWidth() - mTextPaint.measureText(mTextbarprog), getHeight() / 2, mTextPaint.measureText(mTextbarprog), mCircleLeft);
                 canvas.drawText(mTextbarprog, (float) (getWidth() - 1.5 * mTextPaint.measureText(mTextbarprog)), getHeight() / 2 + mTextPaint.getTextSize() / 2, mTextPaint);
             }
