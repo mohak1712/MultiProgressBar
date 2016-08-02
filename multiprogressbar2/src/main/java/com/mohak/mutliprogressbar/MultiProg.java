@@ -326,7 +326,7 @@ public class MultiProg extends View {
             default:
             case MeasureSpec.UNSPECIFIED:
             case MeasureSpec.AT_MOST:
-                height = (int) Math.max(2 * mTextPaint.measureText(mTextbarprog), 2 * mTextPaint2.measureText(mTextbarprog2));
+                height = (int) mTextPaint.measureText(""+mMaxProgress+"%");
                 break;
 
 
